@@ -1,0 +1,33 @@
+---
+server:  port: 8086
+spring:  application:    name: spfl-zuul-proxy
+#hystrix: 
+  #command:
+    #default:
+      #execution:
+        #isolation:
+          #thread:
+            #timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 60000
+zuul:
+  ignored-services: '*'
+  routes:    data-population-service:
+      path: /data-population/**
+      service-id: spfl-data-population-service
+    fixture-data-service: 
+      path: /fixture-service/**
+      service-id: spfl-fixture-data-service
+    team-data-service: 
+      path: /team-service/**
+      service-id: spfl-team-data-service
+    league-data-service: 
+      path: /league-service/**
+      service-id: spfl-league-data-service
+    league-table-service: 
+      path: /league-table-service/**
+      service-id: spfl-league-table-service
+    config-service: 
+      path: /config/**
+      service-id: spfl-config-service
+  
